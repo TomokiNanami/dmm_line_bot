@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "module": "es6",
+    "target": "es6",
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "moduleResolution": "node",
+    "removeComments": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
