@@ -9,7 +9,9 @@ import * as Types from "@line/bot-sdk";
 export class Carousel extends IResponseType {
 
     public dataExport(data: DmmResponse): Types.TemplateMessage {
+
         let columns: Types.TemplateColumn[] = [];
+
         for (let i = 0; i < 3; i++) {
             const item: Item = data.result.items[ i ];
             const column: Types.TemplateColumn = {
