@@ -14,6 +14,8 @@ export class Carousel extends IResponseType {
 
         for (let i = 0; i < 3; i++) {
             const item: Item = data.result.items[ i ];
+            console.log('Item確認');
+            console.log(item);
             const column: Types.TemplateColumn = {
                 thumbnailImageUrl: item.imageURL.large,
                 title: item.title,
