@@ -18,15 +18,12 @@ export class DMM {
 
         try {
 
-            console.log('5 URL生成');
             const url: string = this.toURL(keyword);
-            console.log('6 fetch');
             const response = await fetch(url);
             const contents: DmmResponse = await response.json();
             console.log(contents);
             console.log(typeof contents);
 
-            console.log('7 返却');
             return contents;
 
         } catch (e) {

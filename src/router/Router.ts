@@ -19,21 +19,16 @@ let router = express.Router();
 router.post('/', middleware(middleConfig), async (req, res) => {
     try {
         const dmm = new DmmController(new Carousel());
-        console.log('1 dmmに問い合わせ');
         const result = await dmm.fetchContents(req, res);
-        console.log(`9 問い合わせ終了`);
-        console.log(result);
-        console.log(`10 reply`);
-        console.log(`11 response json`);
-        res.json(await client.replyMessage(req.body.events.replyToken, result));
+        await client.replyMessage(req.body.events.replyToken, result);
+        res.json(result);
     } catch (e) {
         console.error(e);
-        res.json(await client.replyMessage(req.body.events.replyToken,
-            {
-                type: 'text',
-                text: 'Oops! Botがバグったようだ…。作成者も使ってるので連絡してくれ!'
-            }
-        ));
+        await client.replyMessage(req.body.events.replyToken, {
+            type: 'text',
+            text: 'Oops! Botがバグったようだ…。作成者も使ってるので連絡してくれ!'
+        });
+        res.status(500).end();
     }
 });
 
