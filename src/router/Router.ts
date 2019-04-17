@@ -20,13 +20,15 @@ router.post('/', middleware(middleConfig), async (req, res) => {
     try {
         const dmm = new DmmController(new Carousel());
         const result = await dmm.fetchContents(req, res);
+        await client.replyMessage(req.body.events.replyToken, result);
         res.json(result);
     } catch (e) {
         console.error(e);
-        return client.replyMessage(req.body.events.replyToken, {
+        await client.replyMessage(req.body.events.replyToken, {
             type: 'text',
             text: '見つかりませんでした…。キーワードを変えて再度送ってみてね。'
         });
+        res.status(500).end();
     }
 });
 

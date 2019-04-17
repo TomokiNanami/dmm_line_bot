@@ -1,3 +1,6 @@
+import fetch from 'node-fetch';
+import { DmmResponse } from "../interface/DmmResponse";
+
 /**
  * DMMの(大げさ)ドメインクラス
  */
@@ -11,13 +14,18 @@ export class DMM {
         this.OUTPUT_TYPE = '&output=json';
     }
 
-    public async fetch(keyword: string) {
-        // TODO: Nodeから外部のAPIをたたく方法調査しておく
-        // const contents = await http.request(this.toURL(keyword), res => {
-        //     res.on("data", contents => {
-        //         return contents;
-        //     });
-        // });
+    public async fetch(keyword: string): Promise<DmmResponse> {
+
+        const url: string = this.toURL(keyword);
+        const response = await fetch(url);
+        const contents: DmmResponse = await response.json();
+        console.log(contents);
+
+        if (!contents) {
+            throw new Error('商品が見つかりませんでした。');
+        }
+
+        return contents;
 
     }
 
