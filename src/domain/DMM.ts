@@ -21,7 +21,7 @@ export class DMM {
         const contents: DmmResponse = await response.json();
         console.log(contents);
 
-        if (!contents) {
+        if (this.isNotFound(contents)) {
             throw new Error('商品が見つかりませんでした。');
         }
 
@@ -36,5 +36,13 @@ export class DMM {
     private toURL(param: string) {
         const encodedParam = encodeURI(param);
         return this.URL + encodedParam + this.OUTPUT_TYPE;
+    }
+
+    /**
+     * 商品が見つからなかった
+     * @param contents
+     */
+    private isNotFound(contents: DmmResponse) {
+        return contents.result.total_count === 0;
     }
 }
