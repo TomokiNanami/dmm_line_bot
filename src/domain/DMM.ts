@@ -24,6 +24,7 @@ export class DMM {
             const response = await fetch(url);
             const contents: DmmResponse = await response.json();
             console.log(contents);
+            console.log(typeof contents);
 
             console.log('7 返却');
             return contents;

@@ -16,10 +16,15 @@ export class Carousel extends IResponseType {
             const item: Item = data.result.items[ i ];
             console.log('Item確認');
             console.log(item);
+
+            // レビューは無いものもあるため
+            const review_count = typeof item.review !== "undefined" ? item.review.count : 0;
+            const review_average = typeof item.review !== "undefined" ? item.review.average : '0';
+
             const column: Types.TemplateColumn = {
                 thumbnailImageUrl: item.imageURL.large,
                 title: item.title,
-                text: `レビュー数: ${item.review.count}\nレビュー平均: ${item.review.average}`,
+                text: `レビュー数: ${review_count}\nレビュー平均: ${review_average}`,
                 actions: [
                     {
                         type: 'uri',

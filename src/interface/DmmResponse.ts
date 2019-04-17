@@ -30,7 +30,7 @@ export interface Item {
     product_id: string;
     title: string;
     volume: string;
-    review: Review;
+    review?: Review;
     URL: string;
     URLsp: string;
     affiliateURL: string;
