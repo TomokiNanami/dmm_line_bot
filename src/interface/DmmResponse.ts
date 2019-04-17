@@ -1,5 +1,15 @@
 export interface DmmResponse {
-    result: DmmResult
+    parameters: Parameters;
+    result: DmmResult;
+}
+
+interface Parameters {
+    api_id: string;
+    affiliate_id: string;
+    site: string;
+    service: string;
+    keyword: string;
+    output: string;
 }
 
 interface DmmResult {
@@ -35,7 +45,7 @@ export interface Item {
 
 interface Review {
     count: number;
-    average: number;
+    average: string;
 }
 
 interface ImageURL {
