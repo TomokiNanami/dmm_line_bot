@@ -16,16 +16,18 @@ export class DMM {
 
     public async fetch(keyword: string): Promise<DmmResponse> {
 
-        const url: string = this.toURL(keyword);
-        const response = await fetch(url);
-        const contents: DmmResponse = await response.json();
-        console.log(contents);
+        try {
 
-        if (this.isNotFound(contents)) {
-            throw new Error('商品が見つかりませんでした。');
+            const url: string = this.toURL(keyword);
+            const response = await fetch(url);
+            const contents: DmmResponse = await response.json();
+            console.log(contents);
+
+            return contents;
+
+        } catch (e) {
+            throw new Error(e);
         }
-
-        return contents;
 
     }
 
@@ -38,11 +40,4 @@ export class DMM {
         return this.URL + encodedParam + this.OUTPUT_TYPE;
     }
 
-    /**
-     * 商品が見つからなかった
-     * @param contents
-     */
-    private isNotFound(contents: DmmResponse) {
-        return contents.result.total_count === 0;
-    }
 }

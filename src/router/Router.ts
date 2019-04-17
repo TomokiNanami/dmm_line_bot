@@ -26,7 +26,7 @@ router.post('/', middleware(middleConfig), async (req, res) => {
         console.error(e);
         await client.replyMessage(req.body.events.replyToken, {
             type: 'text',
-            text: '見つかりませんでした…。キーワードを変えて再度送ってみてね。'
+            text: 'Oops! Botがバグったようだ…。作成者も使ってるので連絡してくれ!'
         });
         res.status(500).end();
     }
