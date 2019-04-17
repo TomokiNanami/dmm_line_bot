@@ -25,15 +25,19 @@ export class DmmController {
     public async fetchContents(req, res): Promise<Types.TemplateMessage | Types.TextMessage> {
 
         try {
+            console.log('2 キーワードを抽出');
             const sendKeyword: string = DmmController.getSendText(req);
 
+            console.log('3 キーワードの形式判定');
             if (sendKeyword === '') {
                 return { type: 'text', text: 'キーワードはテキストだけ受け付けてるよ!' }
             }
 
             const dmm = new DMM();
+            console.log('4 dmmにリクエスト');
             const contents: DmmResponse = await dmm.fetch(sendKeyword);
 
+            console.log('8 返却');
             return this.isNotFound(contents) ?
                 { type: 'text', text: '商品が見つからなかったよ…。キーワードを変えてもう一度送ってみてね。' } :
                 this.presenter.dataExport(contents);

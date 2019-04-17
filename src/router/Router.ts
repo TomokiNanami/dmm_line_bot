@@ -19,8 +19,13 @@ let router = express.Router();
 router.post('/', middleware(middleConfig), async (req, res) => {
     try {
         const dmm = new DmmController(new Carousel());
+        console.log('1 dmmに問い合わせ');
         const result = await dmm.fetchContents(req, res);
+        console.log(`9 問い合わせ終了`);
+        console.log(result);
+        console.log(`10 reply`);
         await client.replyMessage(req.body.events.replyToken, result);
+        console.log(`11 response json`);
         res.json(result);
     } catch (e) {
         console.error(e);
