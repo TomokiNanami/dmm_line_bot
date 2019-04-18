@@ -20,14 +20,14 @@ router.post('/', middleware(middleConfig), async (req, res) => {
     try {
         const dmm = new DmmController(new Carousel());
         const result = await dmm.fetchContents(req, res);
-        const reply = await client.replyMessage(req.body.events.replyToken, result).catch(error => console.error(error));
+        const reply = await client.replyMessage(req.body.events.replyToken, result);
         res.json(reply);
     } catch (e) {
         console.error(e);
         const reply = await client.replyMessage(req.body.events.replyToken, {
             type: 'text',
             text: 'Oops! Botがバグったようだ…。作成者も使ってるので連絡してくれ!'
-        }).catch(error => console.error(error));
+        });
         res.json(reply);
     }
 });

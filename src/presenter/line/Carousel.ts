@@ -21,7 +21,7 @@ export class Carousel extends IResponseType {
 
             const column: Types.TemplateColumn = {
                 thumbnailImageUrl: item.imageURL.large,
-                title: item.title,
+                title: item.title.substring(0, 39) + '…',
                 text: `レビュー数: ${review_count}\nレビュー平均: ${review_average}`,
                 actions: [
                     {
