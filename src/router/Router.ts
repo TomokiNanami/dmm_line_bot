@@ -20,6 +20,9 @@ router.post('/', middleware(middleConfig), async (req, res) => {
     try {
         const dmm = new DmmController(new Carousel());
         const result = await dmm.fetchContents(req, res);
+        console.log('result確認 -----');
+        console.log(result);
+        console.log('result確認 -----');
         const reply = await client.replyMessage(req.body.events.replyToken, result);
         res.json(reply);
     } catch (e) {

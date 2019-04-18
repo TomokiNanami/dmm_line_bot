@@ -14,8 +14,6 @@ export class Carousel extends IResponseType {
 
         for (let i = 0; i < 3; i++) {
             const item: Item = data.result.items[ i ];
-            console.log('Item確認');
-            console.log(item);
 
             // レビューは無いものもあるため
             const review_count = typeof item.review !== "undefined" ? item.review.count : 0;

@@ -20,11 +20,7 @@ export class DMM {
 
             const url: string = this.toURL(keyword);
             const response = await fetch(url);
-            const contents: DmmResponse = await response.json();
-            console.log(contents);
-            console.log(typeof contents);
-
-            return contents;
+            return await response.json();
 
         } catch (e) {
             throw new Error(e);
