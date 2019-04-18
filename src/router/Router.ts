@@ -24,14 +24,14 @@ router.post('/', middleware(middleConfig), async (req, res) => {
         console.log(result);
         console.log('result確認 -----');
         const reply = await client.replyMessage(req.body.events.replyToken, result);
-        res.json(reply);
+        res.json(JSON.stringify(reply));
     } catch (e) {
         console.error(e);
         const reply = await client.replyMessage(req.body.events.replyToken, {
             type: 'text',
             text: 'Oops! Botがバグったようだ…。作成者も使ってるので連絡してくれ!'
         });
-        res.json(reply);
+        res.json(JSON.stringify(reply));
     }
 });
 
