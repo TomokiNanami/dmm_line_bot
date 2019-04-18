@@ -6,7 +6,6 @@ import { Carousel } from "../presenter/line/Carousel";
 
 const config: Types.ClientConfig = {
     channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN || '',
-    channelSecret: process.env.CHANNEL_SECRET || '',
 };
 const middleConfig: Types.MiddlewareConfig = {
     channelSecret: process.env.CHANNEL_SECRET || '',
@@ -20,11 +19,11 @@ router.post('/', middleware(middleConfig), async (req, res) => {
     try {
         const dmm = new DmmController(new Carousel());
         const result = await dmm.fetchContents(req, res);
-        const reply = await client.replyMessage(req.body.events.replyToken, result);
+        const reply = await client.replyMessage(req.body.events[ 0 ].replyToken, result);
         res.json(reply);
     } catch (e) {
         console.error(e);
-        const reply = await client.replyMessage(req.body.events.replyToken, {
+        const reply = await client.replyMessage(req.body.events[ 0 ].replyToken, {
             type: 'text',
             text: 'Oops! Botがバグったようだ…。作成者も使ってるので連絡してくれ!'
         });

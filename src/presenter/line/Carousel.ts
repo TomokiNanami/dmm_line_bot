@@ -12,7 +12,9 @@ export class Carousel extends IResponseType {
 
         let columns: Types.TemplateColumn[] = [];
 
-        for (let i = 0; i < 3; i++) {
+        const itemSearch = this.getRandomStartNumber(data.result.items.length);
+
+        for (let i = itemSearch.start; i < itemSearch.end; i++) {
             const item: Item = data.result.items[ i ];
 
             // レビューは無いものもあるため
