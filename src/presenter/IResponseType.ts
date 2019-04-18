@@ -1,13 +1,16 @@
-/**
- * Lineのレスポンス形式抽象クラス
- */
 import { DmmResponse } from "../interface/DmmResponse";
 
+/**
+ * 返却する商品の開始地点と終了地点インタフェース
+ */
 export interface ItemSearchNumber {
     start: number;
     end: number;
 }
 
+/**
+ * Lineのレスポンス形式抽象クラス
+ */
 export abstract class IResponseType {
 
     public abstract dataExport(data: DmmResponse);
